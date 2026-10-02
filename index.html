@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MathLearn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="logo"><span class="logo-mark">f(x)</span> MathLearn</div>
+  <nav id="nav">
+    <button data-page="dashboard" class="active"><i data-i="home"></i>Dashboard</button>
+    <button data-page="grafik"><i data-i="chart"></i>Materi Grafik</button>
+    <button data-page="linear"><i data-i="line"></i>Fungsi Linear</button>
+    <button data-page="komposisi"><i data-i="layers"></i>Komposisi Fungsi</button>
+    <button data-page="kalkulator"><i data-i="calc"></i>Kalkulator</button>
+    <button data-page="latihan"><i data-i="pencil"></i>Latihan Soal</button>
+    <button data-page="profil"><i data-i="user"></i>Profil</button>
+  </nav>
+</aside>
+<div class="scrim" id="scrim"></div>
+
+<main class="main">
+  <header class="topbar">
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu"><i data-i="menu"></i></button>
+    <div class="greet">
+      <h1>Selamat Datang  <span>Gelsen</span></h1>
+      <p>Mari belajar matematika dengan cara yang lebih interaktif.</p>
+    </div>
+    <div class="top-tools">
+      <label class="search"><i data-i="search"></i><input id="search" placeholder="Cari materi…" list="topics"></label>
+      <datalist id="topics"><option value="Materi Grafik"><option value="Fungsi Linear"><option value="Komposisi Fungsi"><option value="Kalkulator"><option value="Latihan Soal"><option value="Profil"></datalist>
+      <button class="icon-btn" aria-label="Notifikasi" id="notif"><i data-i="bell"></i><b class="dot"></b></button>
+      <div class="avatar">G</div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD -->
+  <section class="page active" id="dashboard">
+    <div class="hero">
+      <div>
+        <h2>Belajar Matematika Jadi Lebih Mudah</h2>
+        <p>Pelajari grafik, fungsi linear, dan komposisi fungsi melalui materi interaktif dan latihan soal.</p>
+        <button class="btn light" data-go="grafik">Mulai Belajar</button>
+      </div>
+      <svg class="hero-art" viewBox="0 0 220 160" aria-hidden="true">
+        <g stroke="#fff" stroke-opacity=".35"><path d="M20 130H210M40 150V10"/></g>
+        <path class="draw" d="M40 125L190 35" stroke="#9fd0ff" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <circle cx="100" cy="89" r="6" fill="#c4b5fd"/><circle cx="160" cy="53" r="6" fill="#c4b5fd"/>
+        <g fill="#fff" font-size="16" font-weight="700"><text x="196" y="124">x</text><text x="46" y="18">y</text><text x="104" y="76">f(x)</text></g>
+      </svg>
+    </div>
+
+    <h3 class="sec">Progress Belajar</h3>
+    <div class="stats">
+      <div class="card stat"><span>Materi Selesai</span><strong id="stMateri">4</strong></div>
+      <div class="card stat"><span>Latihan Dikerjakan</span><strong id="stLatihan">12</strong></div>
+      <div class="card stat"><span>Nilai Rata-rata</span><strong id="stNilai">87%</strong></div>
+      <div class="card stat ring-card">
+        <div class="ring" id="ring"><b id="stProg">65%</b></div><span>Progress</span>
+      </div>
+    </div>
+
+    <h3 class="sec">Materi Pembelajaran</h3>
+    <div class="cards4">
+      <article class="card topic"><i data-i="chart"></i><h4>Materi Grafik</h4><p>Pelajari konsep grafik dan cara membaca koordinat.</p><button class="btn" data-go="grafik">Pelajari</button></article>
+      <article class="card topic"><i data-i="line"></i><h4>Fungsi Linear</h4><p>Pelajari fungsi linear dan hubungan input dengan output.</p><button class="btn" data-go="linear">Pelajari</button></article>
+      <article class="card topic"><i data-i="layers"></i><h4>Komposisi Fungsi</h4><p>Pelajari konsep f∘g dan g∘f.</p><button class="btn" data-go="komposisi">Pelajari</button></article>
+      <article class="card topic"><i data-i="calc"></i><h4>Kalkulator</h4><p>Hitung fungsi matematika secara interaktif.</p><button class="btn" data-go="kalkulator">Buka Kalkulator</button></article>
+    </div>
+  </section>
+
+  <!-- GRAFIK -->
+  <section class="page" id="grafik">
+    <h2 class="title">Materi Grafik</h2>
+    <div class="card">
+      <p>Grafik fungsi digambar pada <b>sistem koordinat Kartesius</b>. Sumbu <b>X</b> mendatar, sumbu <b>Y</b> tegak. Setiap titik ditulis <b>(x, y)</b>: geser x ke kanan (positif) atau kiri (negatif), lalu y ke atas atau bawah. Contoh: titik (3, 2) berarti 3 ke kanan, 2 ke atas.</p>
+    </div>
+    <div class="split">
+      <div class="card">
+        <canvas id="cvGrafik" width="520" height="520"></canvas>
+      </div>
+      <div class="card">
+        <h4>Tambahkan titik</h4>
+        <div class="row"><label>X = <input type="number" id="px" value="3"></label><label>Y = <input type="number" id="py" value="2"></label></div>
+        <div class="row"><button class="btn" id="addPoint">Tampilkan titik</button><button class="btn ghost" id="clearPoints">Hapus semua</button></div>
+        <p class="hint">Rentang grafik: -10 sampai 10.</p>
+        <ul class="plist" id="plist"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINEAR -->
+  <section class="page" id="linear">
+    <h2 class="title">Fungsi Linear</h2>
+    <div class="split">
+      <div class="card">
+        <h4>Pilih fungsi</h4>
+        <div class="chips" id="linChips"></div>
+        <label class="field">Masukkan nilai x <input type="number" id="linX" value="2"></label>
+        <button class="btn" id="linCalc">Hitung</button>
+        <div class="result" id="linOut"><p class="hint">Tekan “Hitung” untuk melihat prosesnya.</p></div>
+      </div>
+      <div class="card"><canvas id="cvLinear" width="520" height="520"></canvas></div>
+    </div>
+  </section>
+
+  <!-- KOMPOSISI -->
+  <section class="page" id="komposisi">
+    <h2 class="title">Komposisi Fungsi</h2>
+    <div class="card">
+      <p class="mono">f(x) = x + 3 &nbsp; g(x) = 4x + 5 &nbsp; h(x) = 3x − 9</p>
+      <div class="chips" id="compChips"></div>
+      <label class="field">Masukkan nilai x <input type="number" id="compX" value="2"></label>
+      <button class="btn" id="compCalc">Tampilkan langkah</button>
+      <ol class="steps" id="compOut"></ol>
+    </div>
+  </section>
+
+  <!-- KALKULATOR -->
+  <section class="page" id="kalkulator">
+    <h2 class="title">Kalkulator Fungsi</h2>
+    <div class="card">
+      <div class="chips" id="presetChips"></div>
+      <div class="row">
+        <label class="field grow">f(x) = <input id="calFn" value="x + 3" placeholder="contoh: 2x + 1"></label>
+        <label class="field">x = <input type="number" id="calX" value="5"></label>
+      </div>
+      <button class="btn" id="calGo">Hitung</button>
+      <div class="result" id="calOut"><p class="hint">Gunakan x, angka, + − × ÷ dan tanda kurung. Contoh: 2x - 7 atau x*x.</p></div>
+    </div>
+  </section>
+
+  <!-- LATIHAN -->
+  <section class="page" id="latihan">
+    <h2 class="title">Latihan Soal</h2>
+    <div class="card quiz">
+      <div class="qhead"><span id="qNo">Soal 1 dari 10</span><span id="qScore">Skor: 0</span></div>
+      <div class="bar"><i id="qBar"></i></div>
+      <h4 id="qText"></h4>
+      <div class="opts" id="qOpts"></div>
+      <div class="feedback" id="qFb"></div>
+      <button class="btn" id="qNext" hidden>Soal berikutnya</button>
+    </div>
+  </section>
+
+  <!-- PROFIL -->
+  <section class="page" id="profil">
+    <h2 class="title">Profil</h2>
+    <div class="card profile">
+      <div class="avatar big">G</div>
+      <div><h3>Gelsen Kristovan Saleleubaja</h3><p class="hint">Student / RPL</p></div>
+    </div>
+    <div class="stats">
+      <div class="card stat"><span>Materi Selesai</span><strong id="pMateri">4</strong></div>
+      <div class="card stat"><span>Jumlah Latihan</span><strong id="pLatihan">12</strong></div>
+      <div class="card stat"><span>Nilai Rata-rata</span><strong id="pNilai">87%</strong></div>
+      <div class="card stat"><span>Progress</span><strong id="pProg">65%</strong></div>
+    </div>
+    <div class="card"><h4>Progress belajar</h4><div class="bar"><i id="pBar"></i></div>
+      <ul class="done" id="doneList"></ul></div>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
